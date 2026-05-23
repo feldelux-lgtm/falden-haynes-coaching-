@@ -39,15 +39,21 @@
 
       <div class="ah-blob"></div>
 
-      <img
-        src="/Images/feldon-haynes-professional-headshot.webp"
-        alt="Feldon Haynes, business coach and mentor"
-        loading="eager"
-        fetchpriority="high"
-        width="1066"
-        height="1600"
-        class="ah-photo"
-      />
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcset="/Images/feldon-haynes-thoughtful-portrait-mobile.webp"
+        />
+        <img
+          src="/Images/feldon-haynes-professional-headshot.webp"
+          alt="Feldon Haynes, business coach and mentor"
+          loading="eager"
+          fetchpriority="high"
+          width="1066"
+          height="1600"
+          class="ah-photo"
+        />
+      </picture>
 
       <!-- Floating stat card — bottom left -->
       <div class="ah-float ah-float--stat">
