@@ -1,8 +1,8 @@
 ---
 // ExitPopup.astro — exit-intent popup
-// Split: left dark navy photo | right light #f8f9fb CTA
-// Desktop: mouse exits top · Mobile: 30s timer
-// 24h localStorage dismiss TTL
+import { reader } from '../lib/reader';
+const site = await reader.singletons.site_settings.read();
+const calendly = site?.calendly_discovery ?? 'https://calendly.com/feldeluxe/discovery-call';
 ---
 
 <div id="ep-backdrop" class="ep-backdrop" aria-hidden="true"></div>
@@ -77,13 +77,7 @@
       </li>
     </ul>
 
-    <a
-      href="https://calendly.com/feldeluxe/discovery-call"
-      id="ep-cta-link"
-      class="ep-btn"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a href={calendly} id="ep-cta-link" class="ep-btn" target="_blank" rel="noopener noreferrer">
       Book my free discovery call
     </a>
 

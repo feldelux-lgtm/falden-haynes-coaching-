@@ -2,6 +2,24 @@
 // contact.astro — Contact page
 import Layout from '../layouts/Layout.astro';
 import QuizWidget from '../components/QuizWidget.astro';
+import { reader } from '../lib/reader';
+
+const cp   = await reader.singletons.contact_page.read();
+const site = await reader.singletons.site_settings.read();
+
+const heroHeading     = cp?.hero_heading      ?? 'Get in touch';
+const heroSub         = cp?.hero_sub          ?? "Not sure where to start? Take the quick quiz below and I'll point you in the right direction.";
+const quizHeading     = cp?.quiz_heading      ?? 'Not sure where to start?';
+const quizBody        = cp?.quiz_body         ?? "Eight quick questions. I'll tell you which package fits where you are right now, or whether a free call makes more sense first.";
+const optionsHeading  = cp?.options_heading   ?? "I'm easy to reach.";
+const emailCardBody   = cp?.email_card_body   ?? "Send me a message and I'll reply within 48 hours.";
+const waCardBody      = cp?.whatsapp_card_body ?? "Drop me a message and I'll get back to you.";
+const callCardBody    = cp?.call_card_body    ?? '30 minutes, no pitch, no pressure. Just a conversation.';
+
+const email    = site?.email          ?? 'info@feldonhaynes.com';
+const phone    = site?.phone          ?? '07562 614867';
+const waUrl    = site?.whatsapp_url   ?? 'https://wa.me/447562614867';
+const calendly = site?.calendly_discovery ?? 'https://calendly.com/feldeluxe/discovery-call';
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -47,8 +65,8 @@ const schema = JSON.stringify({
         <span aria-hidden="true">›</span>
         <span aria-current="page">Contact</span>
       </nav>
-      <h1 class="hero-h1">Get in touch</h1>
-      <p class="hero-sub">Not sure where to start? Take the quick quiz below and I'll point you in the right direction.</p>
+      <h1 class="hero-h1">{heroHeading}</h1>
+      <p class="hero-sub">{heroSub}</p>
     </div>
   </section>
 
@@ -62,8 +80,8 @@ const schema = JSON.stringify({
             <span class="eyebrow-line eyebrow-line--dark" aria-hidden="true"></span>
             Find your fit
           </p>
-          <h2 class="quiz-h2">Not sure where to start?</h2>
-          <p class="quiz-body">Eight quick questions. I'll tell you which package fits where you are right now, or whether a free call makes more sense first.</p>
+          <h2 class="quiz-h2">{quizHeading}</h2>
+          <p class="quiz-body">{quizBody}</p>
           <div class="quiz-trust">
             <div class="trust-item">
               <span class="trust-num">1 min</span>
@@ -94,7 +112,7 @@ const schema = JSON.stringify({
           <span class="eyebrow-line eyebrow-line--dark" aria-hidden="true"></span>
           Prefer to reach out directly?
         </p>
-        <h2 class="options-h2">I'm easy to reach.</h2>
+        <h2 class="options-h2">{optionsHeading}</h2>
       </div>
 
       <div class="options-grid fade-in">
@@ -105,9 +123,9 @@ const schema = JSON.stringify({
             <img src="/Images/emailicon.webp" alt="" width="56" height="56" loading="lazy" aria-hidden="true" />
           </div>
           <h3 class="option-heading">Email</h3>
-          <p class="option-body">Send me a message and I'll reply within 48 hours.</p>
-          <a href="mailto:info@feldonhaynes.com" class="option-link">
-            info@feldonhaynes.com
+          <p class="option-body">{emailCardBody}</p>
+          <a href={`mailto:${email}`} class="option-link">
+            {email}
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -118,9 +136,9 @@ const schema = JSON.stringify({
             <img src="/Images/Whatsappicon.webp" alt="" width="56" height="56" loading="lazy" aria-hidden="true" />
           </div>
           <h3 class="option-heading">WhatsApp</h3>
-          <p class="option-body">Drop me a message and I'll get back to you.</p>
-          <a href="https://wa.me/447562614867" class="option-link" target="_blank" rel="noopener noreferrer">
-            07562 614867
+          <p class="option-body">{waCardBody}</p>
+          <a href={waUrl} class="option-link" target="_blank" rel="noopener noreferrer">
+            {phone}
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -131,8 +149,8 @@ const schema = JSON.stringify({
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
           <h3 class="option-heading">Free discovery call</h3>
-          <p class="option-body">30 minutes, no pitch, no pressure. Just a conversation.</p>
-          <a href="https://calendly.com/feldeluxe/discovery-call" class="option-cta" target="_blank" rel="noopener noreferrer">
+          <p class="option-body">{callCardBody}</p>
+          <a href={calendly} class="option-cta" target="_blank" rel="noopener noreferrer">
             Book a call
             <span aria-hidden="true">&rarr;</span>
           </a>

@@ -1,7 +1,22 @@
 ---
 // Hero.astro — homepage hero
-// Light #f8f9fb background, right-side purple gradient tint
-// Left: chip tag + H1 + sub + CTAs + trust dots. Right: photo card + floating stat
+import { reader } from '../lib/reader';
+
+const hp  = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const chip        = hp?.hero_chip        ?? '1-to-1 Entrepreneurial Coaching';
+const headline    = hp?.hero_headline    ?? "The business coach who's actually built businesses.";
+const subheading  = hp?.hero_subheading  ?? '1-to-1 business and project planning coaching for small business owners and ambitious founders.';
+const ctaPrimary  = hp?.hero_cta_primary  ?? 'Book your free discovery call';
+const ctaSecondary = hp?.hero_cta_secondary ?? 'See how it works';
+const trust1      = hp?.hero_trust_1     ?? '35+ businesses started from scratch';
+const trust2      = hp?.hero_trust_2     ?? '40+ founders supported';
+const trust3      = hp?.hero_trust_3     ?? '3 industry awards including EPIC Spirit Award';
+const floatNum    = hp?.hero_float_number ?? '40+';
+const floatLabel  = hp?.hero_float_label  ?? 'Founders supported';
+const awardChip   = hp?.hero_award_chip   ?? 'EPIC Spirit Award';
+const calendly    = site?.calendly_discovery ?? 'https://calendly.com/feldeluxe/discovery-call';
 ---
 
 <section class="hero" aria-label="Introduction">
@@ -10,42 +25,35 @@
   <div class="hero-copy-wrap">
     <div class="hero-copy fade-in">
 
-      <span class="hero-chip">1-to-1 Entrepreneurial Coaching</span>
+      <span class="hero-chip">{chip}</span>
 
       <h1 class="hero-h1">
-        The business coach<br>who's actually<br>
-        <em>built businesses.</em>
+        {headline.includes("built businesses") ? (
+          <>The business coach<br />who's actually<br /><em>built businesses.</em></>
+        ) : headline}
       </h1>
 
-      <p class="hero-sub">
-        1-to-1 business and project planning coaching for small business owners and ambitious founders.
-        From someone who has actually built businesses, not just read about them.
-      </p>
+      <p class="hero-sub">{subheading}</p>
 
       <div class="hero-buttons">
-        <a
-          href="https://calendly.com/feldeluxe/discovery-call"
-          class="btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Book your free discovery call
+        <a href={calendly} class="btn-primary" target="_blank" rel="noopener noreferrer">
+          {ctaPrimary}
         </a>
-        <a href="#services" class="btn-ghost">See how it works</a>
+        <a href="#services" class="btn-ghost">{ctaSecondary}</a>
       </div>
 
       <div class="hero-trust">
         <div class="trust-item">
           <span class="trust-dot" aria-hidden="true"></span>
-          <span><strong>35+ businesses</strong> started from scratch</span>
+          <span set:html={trust1.replace(/^(\d+\+?\s+\w+)/i, '<strong>$1</strong>')}></span>
         </div>
         <div class="trust-item">
           <span class="trust-dot" aria-hidden="true"></span>
-          <span><strong>40+ founders</strong> supported</span>
+          <span set:html={trust2.replace(/^(\d+\+?\s+\w+)/i, '<strong>$1</strong>')}></span>
         </div>
         <div class="trust-item">
           <span class="trust-dot" aria-hidden="true"></span>
-          <span><strong>3 industry awards</strong> including EPIC Spirit Award</span>
+          <span set:html={trust3.replace(/^(\d+\+?\s+\w+)/i, '<strong>$1</strong>')}></span>
         </div>
       </div>
 
@@ -56,14 +64,10 @@
   <div class="hero-photo-col" aria-hidden="true">
     <div class="hero-photo-wrap">
 
-      <!-- Decorative background blob -->
       <div class="hero-blob" aria-hidden="true"></div>
 
       <picture>
-        <source
-          media="(max-width: 768px)"
-          srcset="/Images/feldon-haynes-professional-headshot.webp"
-        />
+        <source media="(max-width: 768px)" srcset="/Images/feldon-haynes-professional-headshot.webp" />
         <img
           src="/Images/feldon-haynes-thoughtful-portrait.webp"
           alt="Feldon Haynes, business coach"
@@ -75,18 +79,16 @@
         />
       </picture>
 
-      <!-- Floating stat card — bottom left -->
       <div class="hero-float hero-float--1">
-        <span class="float-number">40+</span>
-        <span class="float-label">Founders supported</span>
+        <span class="float-number">{floatNum}</span>
+        <span class="float-label">{floatLabel}</span>
       </div>
 
-      <!-- Floating award chip — top right -->
       <div class="hero-float hero-float--2">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
         </svg>
-        <span>EPIC Spirit Award</span>
+        <span>{awardChip}</span>
       </div>
 
     </div>
