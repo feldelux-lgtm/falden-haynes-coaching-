@@ -59,49 +59,66 @@ const schema = JSON.stringify({
 
   <!-- ── 1. Page header ────────────────────── -->
   <section class="contact-header" aria-label="Contact page introduction">
-    <div class="container">
-      <div class="ch-inner">
+    <div class="ch-split">
 
-        <!-- Left: copy -->
-        <div class="ch-copy fade-in">
-          <nav class="ch-breadcrumb" aria-label="Breadcrumb">
-            <a href="/" class="ch-bc-link">Home</a>
-            <span class="ch-bc-sep" aria-hidden="true">›</span>
-            <span class="ch-bc-cur" aria-current="page">Contact</span>
-          </nav>
-          <p class="header-eyebrow">
-            <span class="eyebrow-line" aria-hidden="true"></span>
-            Get in touch
-          </p>
-          <h1 class="header-h1">Find a business coach who's built one.</h1>
-          <p class="header-sub">
-            The best place to start is a free 30-minute discovery call.
-            No pitch. No pressure. Just a conversation about where you are
-            and where you want to go.
-          </p>
-          <div class="header-pills">
-            <span class="header-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-              30 minutes
-            </span>
-            <span class="header-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-              Completely free
-            </span>
-            <span class="header-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Wed &amp; Thu, 8am to 6pm
-            </span>
-          </div>
+      <!-- Left: copy -->
+      <div class="ch-copy fade-in">
+        <nav class="ch-breadcrumb" aria-label="Breadcrumb">
+          <a href="/" class="ch-bc-link">Home</a>
+          <span class="ch-bc-sep" aria-hidden="true">›</span>
+          <span class="ch-bc-cur" aria-current="page">Contact</span>
+        </nav>
+        <p class="header-eyebrow">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Get in touch
+        </p>
+        <h1 class="header-h1">Find a business coach who's built one.</h1>
+        <p class="header-sub">
+          The best place to start is a free 30-minute discovery call.
+          No pitch. No pressure. Just a conversation about where you are
+          and where you want to go.
+        </p>
+        <div class="header-pills">
+          <span class="header-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            30 minutes
+          </span>
+          <span class="header-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Completely free
+          </span>
+          <span class="header-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Wed &amp; Thu, 8am to 6pm
+          </span>
         </div>
-
-
+        <a href="#quiz" class="ch-cta">
+          Find your package
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
+
+      <!-- Right: photo panel -->
+      <div class="ch-photo-panel" aria-hidden="true">
+        <img
+          src="/Images/feldon-haynes-professional-headshot.webp"
+          alt="Feldon Haynes, business coach"
+          class="ch-photo"
+          width="600"
+          height="720"
+          loading="eager"
+        />
+        <div class="ch-photo-badge">
+          <span class="ch-badge-num">200+</span>
+          <span class="ch-badge-label">businesses coached</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ── 2. Quiz ──────────────────────────────── -->
-  <section class="quiz-section" aria-label="Find the right coaching package">
+  <section class="quiz-section" id="quiz" aria-label="Find the right coaching package">
     <div class="qs-split">
 
       <!-- LEFT: dark navy copy panel -->
@@ -227,31 +244,25 @@ const schema = JSON.stringify({
 <style>
   /* ── 1. Header ─────────────────────────────── */
   .contact-header {
-    background:
-      linear-gradient(to right, rgba(15,12,45,0.92) 0%, rgba(26,23,68,0.78) 45%, rgba(26,23,68,0.38) 100%),
-      url('/Images/feldon-haynes-thoughtful-portrait.webp') center 20%/cover no-repeat;
     overflow: hidden;
+    background: var(--background);
   }
 
-  .ch-inner {
+  .ch-split {
     display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    min-height: 520px;
-    gap: 0;
-    max-width: 700px;
+    grid-template-columns: 1fr 420px;
+    min-height: 580px;
   }
 
   /* Left: copy */
   .ch-copy {
-    padding: 80px 0 72px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
+    padding: 80px max(48px, calc((100vw - 1200px) / 2 + 24px)) 72px max(48px, calc((100vw - 1200px) / 2 + 24px));
+    background: var(--background);
   }
-
-  /* Right: photo — hidden on all sizes (bg image used instead) */
-  .ch-photo { display: none; }
 
   /* Breadcrumb */
   .ch-breadcrumb {
@@ -261,12 +272,12 @@ const schema = JSON.stringify({
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 13px;
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
-  .ch-bc-link { color: rgba(255,255,255,0.75); text-decoration: none; transition: opacity 0.2s; }
-  .ch-bc-link:hover { opacity: 0.9; }
-  .ch-bc-sep { color: rgba(255,255,255,0.3); font-size: 16px; }
-  .ch-bc-cur { color: rgba(255,255,255,0.45); }
+  .ch-bc-link { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .ch-bc-link:hover { color: var(--primary); }
+  .ch-bc-sep { color: var(--outline); font-size: 16px; }
+  .ch-bc-cur { color: var(--on-surface-variant); }
 
   .header-eyebrow {
     display: inline-flex;
@@ -274,27 +285,28 @@ const schema = JSON.stringify({
     gap: 8px;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-weight: 700;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: #F2D832;
+    color: var(--primary);
     margin-bottom: 16px;
   }
   .eyebrow-line {
     display: inline-block;
     width: 28px;
-    height: 1px;
-    background: #F2D832;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
     flex-shrink: 0;
   }
 
   .header-h1 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 58px;
+    font-size: 52px;
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: #ffffff;
-    line-height: 1.05;
+    color: var(--on-surface);
+    line-height: 1.06;
     margin-bottom: 20px;
   }
 
@@ -302,31 +314,104 @@ const schema = JSON.stringify({
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.75;
-    margin-bottom: 32px;
+    color: var(--on-surface-variant);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 480px;
   }
 
   /* Info pills */
   .header-pills {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
+    margin-bottom: 32px;
   }
   .header-pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    color: #ffffff;
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.20);
-    padding: 8px 16px;
+    color: var(--on-surface-variant);
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    padding: 7px 14px;
     border-radius: 9999px;
     white-space: nowrap;
+  }
+  .header-pill svg { color: var(--primary); }
+
+  /* CTA button */
+  .ch-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--on-primary);
+    background: var(--primary);
+    padding: 14px 28px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(59, 48, 158, 0.28);
+  }
+  .ch-cta:hover {
+    background: var(--primary-container);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(59, 48, 158, 0.35);
+  }
+  .ch-cta:active { transform: scale(0.98); }
+
+  /* Right: photo panel */
+  .ch-photo-panel {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .ch-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+    filter: saturate(0.88);
+  }
+
+  /* Badge overlay on photo */
+  .ch-photo-badge {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    background: rgba(15, 12, 45, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ch-badge-num {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .ch-badge-label {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
   }
 
   /* ── 2. Quiz section ──────────────────────── */
@@ -577,22 +662,22 @@ const schema = JSON.stringify({
   }
 
   @media (max-width: 860px) {
-    /* Mobile: swap to bottom-anchored portrait image */
-    .contact-header {
-      background:
-        linear-gradient(to bottom, rgba(15,12,45,0.45) 0%, rgba(26,23,68,0.82) 55%, #1a1744 100%),
-        url('/Images/feldon-haynes-whiteboard-strategy-session.webp') center/cover no-repeat;
-      min-height: 480px;
-      display: flex;
-      align-items: flex-end;
+    .ch-split {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 280px;
     }
-    .ch-inner { min-height: auto; }
-    .ch-copy { padding: 40px 0 52px; }
+    .ch-copy {
+      padding: 48px 24px 40px;
+      justify-content: flex-start;
+    }
+    .ch-photo-panel { order: -1; }
+    .ch-photo { object-position: center 15%; }
+    .ch-photo-badge { bottom: 16px; left: 16px; }
   }
 
   @media (max-width: 768px) {
     /* Header */
-    .header-h1 { font-size: 36px; }
+    .header-h1 { font-size: 34px; }
     .header-sub { font-size: 15px; }
 
     /* Quiz: stack top=copy bottom=quiz */
@@ -651,9 +736,10 @@ const schema = JSON.stringify({
   }
 
   @media (max-width: 480px) {
-    .header-h1 { font-size: 30px; }
-    .header-pills { gap: 8px; }
-    .header-pill { font-size: 12px; padding: 6px 12px; }
+    .header-h1 { font-size: 28px; }
+    .header-pills { gap: 6px; }
+    .header-pill { font-size: 11px; padding: 6px 12px; }
+    .ch-cta { font-size: 14px; padding: 12px 22px; }
     .qs-h2 { font-size: 26px; }
     .qs-left-inner { padding: 32px 16px 28px; }
     .qs-right { padding: 24px 12px 36px; }
