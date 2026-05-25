@@ -1,0 +1,296 @@
+---
+// AboutPageMVV.astro — Mission / Vision / Values — 3 col with dividers
+---
+
+<section class="mvv" aria-label="Mission, Vision and Values">
+  <div class="container">
+
+    <div class="mvv-header fade-in">
+      <p class="mvv-eyebrow">
+        <span class="mvv-eyebrow-line" aria-hidden="true"></span>
+        The why behind the work
+      </p>
+      <h2 class="mvv-h2">Mission, Vision &amp; Values</h2>
+    </div>
+
+    <div class="mvv-scroll-wrap" id="mvv-scroll">
+      <div class="mvv-cols fade-in">
+
+        <!-- Mission -->
+        <div class="mvv-col">
+          <img src="/Images/Mission2.webp" alt="" class="mvv-icon" aria-hidden="true" loading="lazy" width="108" height="108" />
+          <h3 class="mvv-label">Mission</h3>
+          <p class="mvv-body">
+            I started this to make entrepreneurship practical and achievable through
+            action-focused coaching and structured planning, helping startup founders
+            seize opportunities and build successful ventures that create meaningful impact.
+          </p>
+        </div>
+
+        <div class="mvv-divider" aria-hidden="true"></div>
+
+        <!-- Vision -->
+        <div class="mvv-col">
+          <img src="/Images/Vision2.webp" alt="" class="mvv-icon" aria-hidden="true" loading="lazy" width="108" height="108" />
+          <h3 class="mvv-label">Vision</h3>
+          <p class="mvv-body">
+            A future where entrepreneurial success is driven by preparation rather than
+            chance. More start-up businesses in the UK solving real problems, equipped
+            with the planning and confidence to build businesses that last.
+          </p>
+        </div>
+
+        <div class="mvv-divider" aria-hidden="true"></div>
+
+        <!-- Values -->
+        <div class="mvv-col">
+          <img src="/Images/Values2.webp" alt="" class="mvv-icon" aria-hidden="true" loading="lazy" width="108" height="108" />
+          <h3 class="mvv-label">Values</h3>
+          <ul class="mvv-values">
+            <li><strong>Always be growing</strong> committed to learning, experimenting and finding the right people.</li>
+            <li><strong>Follow up when needed</strong> a call to keep you on track with what you are doing.</li>
+            <li><strong>Listen for clarity</strong> gaining clarity to provide the best advice possible.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile carousel nav -->
+    <div class="mvv-carousel-nav" aria-hidden="true">
+      <div class="mvv-dots" id="mvv-dots">
+        <span class="mvv-dot mvv-dot--active"></span>
+        <span class="mvv-dot"></span>
+        <span class="mvv-dot"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .mvv {
+    background: #f8f9fb;
+    padding: 88px 0;
+    border-top: 1px solid #ede9ff;
+  }
+
+  /* Header */
+  .mvv-header { margin-bottom: 52px; }
+
+  .mvv-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #534AB7;
+    margin-bottom: 14px;
+  }
+  .mvv-eyebrow-line {
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: #F2D832;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .mvv-h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #1a1744;
+    line-height: 1.1;
+  }
+
+  /* 3-col layout */
+  .mvv-cols {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    gap: 0;
+  }
+
+  .mvv-divider {
+    width: 1px;
+    background: #d5d1f0;
+    margin: 8px 0;
+  }
+
+  .mvv-col {
+    padding: 16px 44px 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mvv-col:not(:first-child) {
+    padding: 16px 44px 16px 44px;
+  }
+
+  /* Icon */
+  .mvv-icon {
+    width: 108px;
+    height: 108px;
+    display: block;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  /* Label */
+  .mvv-label {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #534AB7;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  /* Body */
+  .mvv-body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 15px;
+    color: #7e7a9f;
+    line-height: 1.8;
+  }
+
+  /* Values list */
+  .mvv-values {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+  }
+  .mvv-values li {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+    color: #7e7a9f;
+    line-height: 1.7;
+  }
+  .mvv-values li strong {
+    color: #1a1744;
+    font-weight: 700;
+  }
+
+  /* Carousel nav — hidden desktop */
+  .mvv-carousel-nav {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .mvv-dots { display: flex; gap: 6px; align-items: center; }
+  .mvv-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #d5d1f0;
+    transition: background 0.2s, width 0.2s;
+  }
+  .mvv-dot--active { background: #534AB7; width: 20px; border-radius: 4px; }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .mvv-cols { grid-template-columns: 1fr 1fr; }
+    .mvv-divider:first-of-type { display: none; }
+    .mvv-divider:last-of-type {
+      grid-column: 1 / -1;
+      width: auto;
+      height: 1px;
+      margin: 0;
+    }
+    .mvv-col { padding: 0 0 36px 0; }
+    .mvv-col:not(:first-child) { padding: 0 0 36px 0; }
+    .mvv-col:first-child { padding-right: 32px; }
+    .mvv-col:nth-child(3) { padding-left: 32px; }
+    .mvv-col:last-child { grid-column: 1 / -1; padding-top: 36px; padding-bottom: 0; }
+  }
+
+  /* Mobile carousel */
+  @media (max-width: 600px) {
+    .mvv { padding: 56px 0; }
+    .mvv-h2 { font-size: 30px; }
+    .mvv-header { margin-bottom: 36px; }
+
+    .mvv-scroll-wrap {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      margin: 0 -16px;
+      padding: 0 16px 4px;
+    }
+    .mvv-scroll-wrap::-webkit-scrollbar { display: none; }
+
+    .mvv-cols {
+      display: flex;
+      flex-wrap: nowrap;
+      width: max-content;
+      gap: 14px;
+      grid-template-columns: unset;
+    }
+
+    .mvv-divider { display: none; }
+
+    .mvv-col,
+    .mvv-col:not(:first-child),
+    .mvv-col:first-child,
+    .mvv-col:nth-child(3),
+    .mvv-col:last-child {
+      width: 78vw;
+      max-width: 300px;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      padding: 32px 28px;
+      background: #ffffff;
+      border: 1px solid #ede9ff;
+      border-radius: 20px;
+      grid-column: auto;
+    }
+
+    .mvv-icon { width: 60px; height: 60px; margin-bottom: 20px; }
+    .mvv-label { font-size: 18px; margin-bottom: 12px; }
+    .mvv-body { font-size: 14px; }
+    .mvv-values li { font-size: 13px; }
+    .mvv-carousel-nav { display: flex; }
+  }
+
+  @media (max-width: 380px) {
+    .mvv { padding: 40px 0; }
+    .mvv-h2 { font-size: 26px; }
+    .mvv-col,
+    .mvv-col:not(:first-child),
+    .mvv-col:first-child,
+    .mvv-col:nth-child(3),
+    .mvv-col:last-child {
+      width: 88vw;
+      padding: 24px 20px;
+    }
+    .mvv-icon { width: 68px; height: 68px; }
+  }
+</style>
+
+<script>
+  const wrap = document.getElementById('mvv-scroll');
+  const dots = document.querySelectorAll<HTMLElement>('#mvv-dots .mvv-dot');
+
+  function cardWidth() {
+    const c = wrap?.querySelector<HTMLElement>('.mvv-col');
+    return c ? c.offsetWidth + 14 : 300;
+  }
+  function updateDots() {
+    if (!wrap) return;
+    const idx = Math.round(wrap.scrollLeft / cardWidth());
+    dots.forEach((d, i) => d.classList.toggle('mvv-dot--active', i === idx));
+  }
+
+  wrap?.addEventListener('scroll', updateDots, { passive: true });
+</script>
