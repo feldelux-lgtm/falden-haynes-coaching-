@@ -3,33 +3,32 @@ import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
+import { readdirSync, statSync } from 'fs';
+import { join } from 'path';
+
+function getAllYaml(dir) {
+  try {
+    return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) return getAllYaml(full);
+      if (entry.name.endsWith('.yaml')) return [full.replace(/\\/g, '/')];
+      return [];
+    });
+  } catch {
+    return [];
+  }
+}
 
 export default defineConfig({
-  site: 'https://feldonhaynes.com', // Update to confirmed domain before launch
+  site: 'https://feldonhaynes.com',
   output: 'server',
   adapter: vercel({
-    includeFiles: [
-      'src/data/homepage.yaml',
-      'src/data/site-settings.yaml',
-      'src/data/about-page.yaml',
-      'src/data/nav.yaml',
-      'src/data/footer.yaml',
-      'src/data/contact-page.yaml',
-      'src/data/bundles/the-project-bundle.yaml',
-      'src/data/bundles/the-action-sprint-bundle.yaml',
-      'src/data/bundles/the-business-plan-bundle.yaml',
-      'src/data/bundles/the-direction-bundle.yaml',
-      'src/data/testimonials/workshop-attendee.yaml',
-      'src/data/testimonials/new-venture-founder.yaml',
-      'src/data/testimonials/business-owner.yaml',
-      'src/data/testimonials/business-manager.yaml',
-    ],
+    includeFiles: getAllYaml('src/data'),
   }),
   compressHTML: true,
   integrations: [
     react(),
     sitemap({
-      // Exclude noindex and ad-only pages
       filter: (page) =>
         !page.includes('/privacy') &&
         !page.includes('/terms') &&
