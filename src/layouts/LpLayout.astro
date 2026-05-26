@@ -54,6 +54,15 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
     <link rel="icon" type="image/png" sizes="16x16"  href="/Images/Logo/feldon-haynes-favicon-16.png" />
     <link rel="apple-touch-icon" sizes="256x256"     href="/Images/Logo/feldon-haynes-favicon-256.png" />
     {schema && <script type="application/ld+json" set:html={schema} />}
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9CHPL1FWHG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9CHPL1FWHG');
+    </script>
   </head>
   <body>
     <slot />

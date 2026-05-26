@@ -106,6 +106,15 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
 
     <!-- Schema JSON-LD -->
     {schema && <script type="application/ld+json" set:html={schema} />}
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9CHPL1FWHG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9CHPL1FWHG');
+    </script>
   </head>
   <body>
     <Nav />
