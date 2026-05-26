@@ -1,20 +1,41 @@
 ---
-// ProblemGrid.astro — "Is this you?" — full-bleed image cards with text overlay
+import { reader } from '../lib/reader';
+
+const hp   = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const chip       = hp?.prob_chip       ?? "Who it's for";
+const h2         = hp?.prob_h2         ?? 'Is this you?';
+const intro      = hp?.prob_intro      ?? 'Four types of founders come through my door. One of them is you.';
+const c1chip     = hp?.prob_card1_chip  ?? 'Aspiring Founder';
+const c1title    = hp?.prob_card1_title ?? "You've got the idea. Now what?";
+const c1body     = hp?.prob_card1_body  ?? "You know you want to build something, but you don't know where to start. I'll help you turn it into a plan you can follow.";
+const c2chip     = hp?.prob_card2_chip  ?? 'Early-Stage Founder';
+const c2title    = hp?.prob_card2_title ?? "You've started. Now it gets real.";
+const c2body     = hp?.prob_card2_body  ?? "The first steps are done. Now you're in the messy middle: money, systems, customers, all at once. Let's cut through it.";
+const c3chip     = hp?.prob_card3_chip  ?? 'Stuck Founder';
+const c3title    = hp?.prob_card3_title ?? "You're running. But something's off.";
+const c3body     = hp?.prob_card3_body  ?? "Growth has stalled or the business feels harder than it should. I'll help you find out why, and fix it.";
+const c4chip     = hp?.prob_card4_chip  ?? 'Business Owner';
+const c4title    = hp?.prob_card4_title ?? "Established. Now let's build on it.";
+const c4body     = hp?.prob_card4_body  ?? "Your business is running. But there's more: scaling, systemising, or just getting your time back. I can help with all of it.";
+const ctaText    = hp?.prob_cta         ?? 'Book a free 30-minute call';
+const calendly   = site?.calendly_discovery ?? 'https://calendly.com/feldon-haynes/discovery-call';
 ---
 
 <section class="problems" id="problems" aria-label="Who this is for">
   <div class="container">
 
     <div class="problems-header fade-in">
-      <span class="p-chip">Who it's for</span>
-      <h2 class="p-h2">Is this you?</h2>
-      <p class="p-intro">Four types of founders come through my door. One of them is you.</p>
+      <span class="p-chip">{chip}</span>
+      <h2 class="p-h2">{h2}</h2>
+      <p class="p-intro">{intro}</p>
     </div>
 
     <div class="p-scroll-wrap" id="prob-scroll">
     <div class="p-grid fade-in">
 
-      <!-- Card 1: Aspiring Founder -->
+      <!-- Card 1 -->
       <article class="p-card">
         <img
           src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
@@ -27,17 +48,14 @@
         <div class="p-card-overlay">
           <span class="p-card-num">01</span>
           <div class="p-card-content">
-            <span class="p-card-chip">Aspiring Founder</span>
-            <h3 class="p-card-title">You've got the idea. Now what?</h3>
-            <p class="p-card-text">
-              You know you want to build something, but you don't know where to start.
-              I'll help you turn it into a plan you can follow.
-            </p>
+            <span class="p-card-chip">{c1chip}</span>
+            <h3 class="p-card-title">{c1title}</h3>
+            <p class="p-card-text">{c1body}</p>
           </div>
         </div>
       </article>
 
-      <!-- Card 2: Early-Stage Founder -->
+      <!-- Card 2 -->
       <article class="p-card">
         <img
           src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
@@ -50,17 +68,14 @@
         <div class="p-card-overlay">
           <span class="p-card-num">02</span>
           <div class="p-card-content">
-            <span class="p-card-chip">Early-Stage Founder</span>
-            <h3 class="p-card-title">You've started. Now it gets real.</h3>
-            <p class="p-card-text">
-              The first steps are done. Now you're in the messy middle:
-              money, systems, customers, all at once. Let's cut through it.
-            </p>
+            <span class="p-card-chip">{c2chip}</span>
+            <h3 class="p-card-title">{c2title}</h3>
+            <p class="p-card-text">{c2body}</p>
           </div>
         </div>
       </article>
 
-      <!-- Card 3: Stuck Founder -->
+      <!-- Card 3 -->
       <article class="p-card">
         <img
           src="https://images.pexels.com/photos/3755761/pexels-photo-3755761.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
@@ -73,17 +88,14 @@
         <div class="p-card-overlay">
           <span class="p-card-num">03</span>
           <div class="p-card-content">
-            <span class="p-card-chip">Stuck Founder</span>
-            <h3 class="p-card-title">You're running. But something's off.</h3>
-            <p class="p-card-text">
-              Growth has stalled or the business feels harder than it should.
-              I'll help you find out why, and fix it.
-            </p>
+            <span class="p-card-chip">{c3chip}</span>
+            <h3 class="p-card-title">{c3title}</h3>
+            <p class="p-card-text">{c3body}</p>
           </div>
         </div>
       </article>
 
-      <!-- Card 4: Business Owner -->
+      <!-- Card 4 -->
       <article class="p-card">
         <img
           src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
@@ -96,12 +108,9 @@
         <div class="p-card-overlay">
           <span class="p-card-num">04</span>
           <div class="p-card-content">
-            <span class="p-card-chip">Business Owner</span>
-            <h3 class="p-card-title">Established. Now let's build on it.</h3>
-            <p class="p-card-text">
-              Your business is running. But there's more: scaling, systemising,
-              or just getting your time back. I can help with all of it.
-            </p>
+            <span class="p-card-chip">{c4chip}</span>
+            <h3 class="p-card-title">{c4title}</h3>
+            <p class="p-card-text">{c4body}</p>
           </div>
         </div>
       </article>
@@ -121,12 +130,12 @@
 
     <div class="p-cta-wrap fade-in">
       <a
-        href="https://calendly.com/feldon-haynes/discovery-call"
+        href={calendly}
         class="p-cta"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Book a free 30-minute call
+        {ctaText}
       </a>
     </div>
 
@@ -216,7 +225,7 @@
     transition: transform 0.5s ease;
   }
 
-  /* Overlay — clear at top, solid dark from midpoint down */
+  /* Overlay */
   .p-card-overlay {
     position: absolute;
     inset: 0;
@@ -234,7 +243,6 @@
     padding: 20px 24px 32px;
   }
 
-  /* Number badge — absolute top left so it's out of the flex flow */
   .p-card-num {
     position: absolute;
     top: 20px;
@@ -252,7 +260,6 @@
     border: 1px solid rgba(255, 255, 255, 0.25);
   }
 
-  /* Text content — bottom */
   .p-card-content {
     display: flex;
     flex-direction: column;

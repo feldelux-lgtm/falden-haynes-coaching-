@@ -1,13 +1,26 @@
 ---
-// ServicesSection.astro — 3 easy steps
+import { reader } from '../lib/reader';
+
+const hp = await reader.singletons.homepage.read();
+
+const chip      = hp?.steps_chip  ?? 'How it works';
+const h2        = hp?.steps_h2    ?? '3 easy steps';
+const s1title   = hp?.step1_title ?? 'Got your idea?';
+const s1body    = hp?.step1_body  ?? 'You have something in mind — a business, a project, a change you want to make. That is the starting point. Bring it as it is. Half-formed is fine.';
+const s2title   = hp?.step2_title ?? 'Choose the pack that suits your idea';
+const s2body    = hp?.step2_body  ?? 'Not sure which package fits? Take the quick quiz and I will point you in the right direction.';
+const s2link    = hp?.step2_link  ?? 'Take the quiz';
+const s3title   = hp?.step3_title ?? 'Get a plan to bring your idea to life';
+const s3body    = hp?.step3_body  ?? 'Real, structured, actionable. A plan built around your idea, your resources, and what you want to achieve.';
+const s3link    = hp?.step3_link  ?? 'Book a free call';
 ---
 
 <section class="steps" id="what-i-do" aria-label="How it works">
   <div class="container">
 
     <div class="steps-header fade-in">
-      <span class="steps-chip">How it works</span>
-      <h2 class="steps-h2">3 easy steps</h2>
+      <span class="steps-chip">{chip}</span>
+      <h2 class="steps-h2">{h2}</h2>
     </div>
 
     <div class="steps-scroll-wrap" id="steps-scroll">
@@ -26,11 +39,8 @@
             height="120"
           />
         </div>
-        <h3 class="step-title">Got your idea?</h3>
-        <p class="step-body">
-          You have something in mind — a business, a project, a change you want to make.
-          That is the starting point. Bring it as it is. Half-formed is fine.
-        </p>
+        <h3 class="step-title">{s1title}</h3>
+        <p class="step-body">{s1body}</p>
       </div>
 
       <!-- Step 2 -->
@@ -46,13 +56,10 @@
             height="120"
           />
         </div>
-        <h3 class="step-title">Choose the pack that suits your idea</h3>
-        <p class="step-body">
-          Not sure which package fits? Take the quick quiz and I will point you
-          in the right direction.
-        </p>
+        <h3 class="step-title">{s2title}</h3>
+        <p class="step-body">{s2body}</p>
         <a href="/contact#quiz" class="step-link">
-          Take the quiz
+          {s2link}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -72,13 +79,10 @@
             height="120"
           />
         </div>
-        <h3 class="step-title">Get a plan to bring your idea to life</h3>
-        <p class="step-body">
-          Real, structured, actionable. A plan built around your idea, your resources,
-          and what you want to achieve.
-        </p>
+        <h3 class="step-title">{s3title}</h3>
+        <p class="step-body">{s3body}</p>
         <a href="/contact" class="step-link">
-          Book a free call
+          {s3link}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>

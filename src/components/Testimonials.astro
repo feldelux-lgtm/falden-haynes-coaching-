@@ -1,6 +1,63 @@
 ---
-// Testimonials.astro — real Trustpilot reviews
-// TODO: replace placeholder display names with real reviewer first names once Feldon confirms from Trustpilot
+import { reader } from '../lib/reader';
+
+const hp   = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const sectionH2  = hp?.test_h2  ?? "Honest words from people I've worked with.";
+const sectionSub = hp?.test_sub ?? 'Real feedback from founders and business owners. Verified on Trustpilot.';
+const tpUrl      = site?.trustpilot_url ?? 'https://uk.trustpilot.com/review/feldeluxe.com';
+
+// Read testimonials collection — show published only
+const rawTestimonials = await reader.collections.testimonials.all();
+const testimonials = rawTestimonials
+  .filter(t => t.entry?.published !== false)
+  .sort((a, b) => {
+    const nameA = (a.entry.reviewer_name as any)?.name ?? a.slug;
+    const nameB = (b.entry.reviewer_name as any)?.name ?? b.slug;
+    return nameA.localeCompare(nameB);
+  });
+
+// Fallback if collection is empty
+const fallbackTestimonials = [
+  {
+    slug: 'workshop-attendee',
+    name: 'Workshop Attendee',
+    role: 'Marketing webinar attendee',
+    quote: '"I attended a marketing webinar led by Feldon Haynes. I felt very welcome as Feldon was very friendly and supportive throughout. He was ensuring that everyone understood everything well. He explained everything very clearly and even answered my questions in depth. I am glad I got the chance to attend. I learnt a lot. Thank you very much Feldon!"',
+    initial: 'W',
+    colour: 'purple' as const,
+  },
+  {
+    slug: 'new-venture-founder',
+    name: 'New Venture Founder',
+    role: 'Grant research client',
+    quote: '"I reached out to Feldon because he was recommended to me as someone who could help with Grant Research. I was looking at a new venture and was a bit lost in the world of grants. We had a call and Feldon was extremely helpful and friendly. He assisted me with places to look, people to contact, and even specific grants to consider applying for."',
+    initial: 'N',
+    colour: 'navy' as const,
+  },
+  {
+    slug: 'business-owner',
+    name: 'Business Owner',
+    role: 'Employment contracts client',
+    quote: '"Feldon arranged the meetings to go through our employment contracts, privacy policies and induction and termination procedures. He was able to draw up a new employment contract to meet with current legislation."',
+    initial: 'B',
+    colour: 'gold' as const,
+  },
+];
+
+type TItem = { slug: string; name: string; role: string; quote: string; initial: string; colour: 'purple' | 'navy' | 'gold' };
+
+const displayTestimonials: TItem[] = testimonials.length > 0
+  ? testimonials.map(t => ({
+      slug: t.slug,
+      name: (t.entry.reviewer_name as any)?.name ?? (t.entry.reviewer_name as any) ?? t.slug,
+      role: t.entry.reviewer_role ?? '',
+      quote: t.entry.quote ? `"${t.entry.quote}"` : '',
+      initial: t.entry.avatar_initial ?? 'F',
+      colour: (t.entry.avatar_colour ?? 'purple') as 'purple' | 'navy' | 'gold',
+    }))
+  : fallbackTestimonials;
 ---
 
 <section class="testimonials" aria-label="Client testimonials">
@@ -14,7 +71,7 @@
     <!-- Trustpilot badge -->
     <div class="tp-badge-wrap fade-in">
       <a
-        href="https://uk.trustpilot.com/review/feldeluxe.com"
+        href={tpUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="tp-badge"
@@ -26,112 +83,48 @@
         <span class="tp-wordmark">Trustpilot</span>
         <span class="tp-sep" aria-hidden="true">·</span>
         <span class="tp-stars-row" aria-label="5 stars">★★★★★</span>
-        <span class="tp-count">4 verified reviews</span>
+        <span class="tp-count">{displayTestimonials.length} verified reviews</span>
       </a>
     </div>
 
     <!-- Header -->
     <div class="testimonials-header fade-in">
-      <h2 class="t-h2">Honest words from people<br>I've worked with.</h2>
-      <p class="t-subhead">Real feedback from founders and business owners. Verified on Trustpilot.</p>
+      <h2 class="t-h2">{sectionH2}</h2>
+      <p class="t-subhead">{sectionSub}</p>
     </div>
 
     <!-- Cards -->
     <div class="t-scroll-wrap" id="tp-scroll">
     <div class="t-grid">
 
-      <!-- Card 1 — Marketing webinar attendee -->
-      <article class="t-card fade-in">
-        <div class="t-card-top">
-          <span class="t-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          <span class="t-verified">
-            <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-              <circle cx="4.5" cy="4.5" r="4.5" fill="#00B67A"/>
-              <path d="M2.5 4.5L3.9 5.9L6.5 3.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Verified
-          </span>
-        </div>
-        <p class="t-quote">
-          "I attended a marketing webinar led by Feldon Haynes. I felt very welcome as Feldon was very friendly and supportive throughout. He was ensuring that everyone understood everything well. He explained everything very clearly and even answered my questions in depth. I am glad I got the chance to attend. I learnt a lot. Thank you very much Feldon!"
-        </p>
-        <div class="t-author">
-          <div class="t-avatar t-avatar--purple" aria-hidden="true">W</div>
-          <div class="t-author-info">
-            <!-- TODO: replace with real first name once Feldon confirms -->
-            <span class="t-name">Workshop Attendee</span>
-            <span class="t-source">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect width="24" height="24" rx="5" fill="#00B67A"/>
-                <path d="M12 4.24L13.79 9.67H19.5L14.95 12.8L16.74 18.24L12 15.1L7.26 18.24L9.05 12.8L4.5 9.67H10.21L12 4.24Z" fill="white"/>
+      {displayTestimonials.map(t => (
+        <article class="t-card fade-in">
+          <div class="t-card-top">
+            <span class="t-stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <span class="t-verified">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
+                <circle cx="4.5" cy="4.5" r="4.5" fill="#00B67A"/>
+                <path d="M2.5 4.5L3.9 5.9L6.5 3.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              Trustpilot review
+              Verified
             </span>
           </div>
-        </div>
-      </article>
-
-      <!-- Card 2 — Grant research client -->
-      <article class="t-card fade-in">
-        <div class="t-card-top">
-          <span class="t-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          <span class="t-verified">
-            <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-              <circle cx="4.5" cy="4.5" r="4.5" fill="#00B67A"/>
-              <path d="M2.5 4.5L3.9 5.9L6.5 3.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Verified
-          </span>
-        </div>
-        <p class="t-quote">
-          "I reached out to Feldon because he was recommended to me as someone who could help with Grant Research. I was looking at a new venture and was a bit lost in the world of grants. We had a call and Feldon was extremely helpful and friendly. He assisted me with places to look, people to contact, and even specific grants to consider applying for."
-        </p>
-        <div class="t-author">
-          <div class="t-avatar t-avatar--navy" aria-hidden="true">N</div>
-          <div class="t-author-info">
-            <!-- TODO: replace with real first name once Feldon confirms -->
-            <span class="t-name">New Venture Founder</span>
-            <span class="t-source">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect width="24" height="24" rx="5" fill="#00B67A"/>
-                <path d="M12 4.24L13.79 9.67H19.5L14.95 12.8L16.74 18.24L12 15.1L7.26 18.24L9.05 12.8L4.5 9.67H10.21L12 4.24Z" fill="white"/>
-              </svg>
-              Trustpilot review
-            </span>
+          <p class="t-quote">{t.quote}</p>
+          <div class="t-author">
+            <div class={`t-avatar t-avatar--${t.colour}`} aria-hidden="true">{t.initial}</div>
+            <div class="t-author-info">
+              <span class="t-name">{t.name}</span>
+              <span class="t-source">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect width="24" height="24" rx="5" fill="#00B67A"/>
+                  <path d="M12 4.24L13.79 9.67H19.5L14.95 12.8L16.74 18.24L12 15.1L7.26 18.24L9.05 12.8L4.5 9.67H10.21L12 4.24Z" fill="white"/>
+                </svg>
+                Trustpilot review
+              </span>
+            </div>
           </div>
-        </div>
-      </article>
-
-      <!-- Card 3 — Employment contracts client -->
-      <article class="t-card fade-in">
-        <div class="t-card-top">
-          <span class="t-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          <span class="t-verified">
-            <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-              <circle cx="4.5" cy="4.5" r="4.5" fill="#00B67A"/>
-              <path d="M2.5 4.5L3.9 5.9L6.5 3.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Verified
-          </span>
-        </div>
-        <p class="t-quote">
-          "Feldon arranged the meetings to go through our employment contracts, privacy policies and induction and termination procedures. He was able to draw up a new employment contract to meet with current legislation."
-        </p>
-        <div class="t-author">
-          <div class="t-avatar t-avatar--gold" aria-hidden="true">B</div>
-          <div class="t-author-info">
-            <!-- TODO: replace with real first name once Feldon confirms -->
-            <span class="t-name">Business Owner</span>
-            <span class="t-source">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect width="24" height="24" rx="5" fill="#00B67A"/>
-                <path d="M12 4.24L13.79 9.67H19.5L14.95 12.8L16.74 18.24L12 15.1L7.26 18.24L9.05 12.8L4.5 9.67H10.21L12 4.24Z" fill="white"/>
-              </svg>
-              Trustpilot review
-            </span>
-          </div>
-        </div>
-      </article>
+        </article>
+      ))}
 
     </div>
     </div>
@@ -149,7 +142,7 @@
     <!-- Footer link -->
     <div class="t-footer fade-in">
       <a
-        href="https://uk.trustpilot.com/review/feldeluxe.com"
+        href={tpUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="t-all-reviews"
@@ -290,7 +283,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 16px;
-    justify-content: center; /* cards sit in the middle on wide screens */
+    justify-content: center;
   }
 
   /* ── Glass card ──────────────────────────── */
@@ -373,6 +366,7 @@
     gap: 12px;
     padding-top: 18px;
     border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: auto;
   }
 
   /* ── Initial avatars ─────────────────────── */
@@ -390,20 +384,9 @@
     border: 2px solid rgba(255,255,255,0.2);
   }
 
-  .t-avatar--purple {
-    background-color: #534AB7;
-    color: #ffffff;
-  }
-
-  .t-avatar--navy {
-    background-color: #3d3882;
-    color: rgba(255,255,255,0.9);
-  }
-
-  .t-avatar--gold {
-    background-color: #F2D832;
-    color: #26215C;
-  }
+  .t-avatar--purple { background-color: #534AB7; color: #ffffff; }
+  .t-avatar--navy   { background-color: #3d3882; color: rgba(255,255,255,0.9); }
+  .t-avatar--gold   { background-color: #F2D832; color: #26215C; }
 
   .t-author-info {
     display: flex;
@@ -463,7 +446,7 @@
       padding: 0 16px 12px;
     }
     .t-grid {
-      justify-content: flex-start; /* start from left so scroll works */
+      justify-content: flex-start;
       width: max-content;
     }
     .t-card { width: 250px; }

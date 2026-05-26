@@ -1,7 +1,17 @@
 ---
-// SessionIncludes.astro — "What every session includes"
-// Purple #534ab7 full rounded card with 2×2 photo grid
-// Left: chip tag + H2 + feature list. Right: 2×2 photo grid
+import { reader } from '../lib/reader';
+
+const hp = await reader.singletons.homepage.read();
+
+const chip   = hp?.session_chip   ?? 'Every session';
+const h2     = hp?.session_h2     ?? 'This is what you get. Every time.';
+const sub    = hp?.session_sub    ?? 'Every bundle. Every session. No exceptions.';
+const f1t    = hp?.session_f1_title ?? 'Recorded every time';
+const f1b    = hp?.session_f1_body  ?? 'Full replay in your inbox. Revisit any moment, any time.';
+const f2t    = hp?.session_f2_title ?? 'Action plan the same day';
+const f2b    = hp?.session_f2_body  ?? 'Not next week. Written and in your inbox before you sleep.';
+const f3t    = hp?.session_f3_title ?? "I'm reachable between sessions";
+const f3b    = hp?.session_f3_body  ?? 'Drop me a message when something comes up. I respond within 48 hours.';
 ---
 
 <section class="session-section" aria-label="What every session includes">
@@ -11,15 +21,11 @@
       <!-- LEFT: copy + features -->
       <div class="session-left">
 
-        <span class="session-chip">Every session</span>
+        <span class="session-chip">{chip}</span>
 
-        <h2 class="session-h2">
-          This is what you get.<br><em>Every time.</em>
-        </h2>
+        <h2 class="session-h2" set:html={h2.replace('. Every Time.', '.<br><em>Every Time.</em>').replace('. Every time.', '.<br><em>Every time.</em>')} />
 
-        <p class="session-sub">
-          Every bundle. Every session. No exceptions.
-        </p>
+        <p class="session-sub">{sub}</p>
 
         <ul class="session-features" role="list">
 
@@ -31,8 +37,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <span class="feature-title">Recorded every time</span>
-              <span class="feature-body">Full replay in your inbox. Revisit any moment, any time.</span>
+              <span class="feature-title">{f1t}</span>
+              <span class="feature-body">{f1b}</span>
             </div>
           </li>
 
@@ -46,8 +52,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <span class="feature-title">Action plan the same day</span>
-              <span class="feature-body">Not next week. Written and in your inbox before you sleep.</span>
+              <span class="feature-title">{f2t}</span>
+              <span class="feature-body">{f2b}</span>
             </div>
           </li>
 
@@ -59,8 +65,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <span class="feature-title">I'm reachable between sessions</span>
-              <span class="feature-body">Drop me a message when something comes up. I respond within 48 hours.</span>
+              <span class="feature-title">{f3t}</span>
+              <span class="feature-body">{f3b}</span>
             </div>
           </li>
 
@@ -277,7 +283,6 @@
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
   }
 
-  /* Offset first and third images slightly for visual interest */
   .photo-grid__img:nth-child(1),
   .photo-grid__img:nth-child(3) {
     margin-top: 16px;

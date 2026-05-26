@@ -1,22 +1,32 @@
 ---
-// FinalCTA.astro — compact closing CTA card
+import { reader } from '../lib/reader';
+
+const hp   = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const chip        = hp?.cta_chip        ?? 'Ready to start?';
+const h2          = hp?.cta_h2          ?? "Let's build something real together.";
+const body        = hp?.cta_body        ?? "Your free 30-minute discovery call costs nothing. I'll listen to where you are, tell you honestly whether I think I can help, and if we're a good fit, we'll talk next steps. No pitch. No pressure.";
+const socialText  = hp?.cta_social_text ?? '40+ founders already working with Feldon';
+const btn         = hp?.cta_btn         ?? 'Book your free discovery call';
+const note        = hp?.cta_note        ?? 'Free · 30 minutes · No obligation';
+const calendly    = site?.calendly_discovery ?? 'https://calendly.com/feldon-haynes/discovery-call';
+
+const [socialBold, socialRest] = socialText.includes(' ') ? (() => {
+  const match = socialText.match(/^(\d+\+?\s+\w+)\s+(.+)$/);
+  return match ? [match[1], match[2]] : ['', socialText];
+})() : ['', socialText];
 ---
 
 <section class="final-cta" aria-label="Book a free discovery call">
   <div class="container">
     <div class="cta-card fade-in">
 
-      <span class="cta-chip">Ready to start?</span>
+      <span class="cta-chip">{chip}</span>
 
-      <h2 class="cta-h2">
-        Let's build something <em>real</em> together.
-      </h2>
+      <h2 class="cta-h2" set:html={h2.replace('real', '<em>real</em>')} />
 
-      <p class="cta-body">
-        Your free 30-minute discovery call costs nothing. I'll listen to where you are,
-        tell you honestly whether I think I can help, and if we're a good fit, we'll
-        talk next steps. No pitch. No pressure.
-      </p>
+      <p class="cta-body">{body}</p>
 
       <div class="cta-social-proof">
         <div class="cta-avatars" aria-hidden="true">
@@ -25,19 +35,21 @@
           <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="" class="cta-avatar" width="100" height="100" loading="lazy" />
           <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="" class="cta-avatar" width="100" height="100" loading="lazy" />
         </div>
-        <p class="cta-social-text"><strong>40+ founders</strong> already working with Feldon</p>
+        <p class="cta-social-text">
+          {socialBold ? <><strong>{socialBold}</strong> {socialRest}</> : socialText}
+        </p>
       </div>
 
       <a
-        href="https://calendly.com/feldon-haynes/discovery-call"
+        href={calendly}
         class="cta-btn"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Book your free discovery call
+        {btn}
       </a>
 
-      <p class="cta-note">Free · 30 minutes · No obligation</p>
+      <p class="cta-note">{note}</p>
 
     </div>
   </div>

@@ -1,148 +1,165 @@
 ---
-// BundleCards.astro — 4-col pricing grid
-// Background: #ffffff clean white
-// Most Popular = Business Plan Bundle — outlined ring treatment
+import { reader } from '../lib/reader';
+
+const hp   = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const sectionChip  = hp?.bundles_chip  ?? 'Investment bundles';
+const sectionH2    = hp?.bundles_h2    ?? 'Choose your starting point';
+const sectionIntro = hp?.bundles_intro ?? 'Launch pricing. All sessions online, Wednesdays and Thursdays, 8am to 6pm.';
+const calendly     = site?.calendly_discovery ?? 'https://calendly.com/feldon-haynes/discovery-call';
+
+// Read bundles collection and sort by sort_order
+const rawBundles = await reader.collections.bundles.all();
+const bundles = rawBundles
+  .filter(b => b.entry != null)
+  .sort((a, b) => (a.entry.sort_order ?? 99) - (b.entry.sort_order ?? 99));
+
+// Fallback hardcoded bundles if collection is empty
+const fallbackBundles = [
+  {
+    slug: 'the-project-bundle',
+    name: 'The Project Bundle',
+    tagline: 'Specific project',
+    sessions: 3,
+    price: 90,
+    price_was: 150,
+    description: 'Three focused sessions to scope, map, and launch a specific project.',
+    calendly_url: site?.calendly_bundle_starter ?? 'https://calendly.com/feldon-haynes/packages/da7fbbe4-840c-4ea8-8147-2128f99cfd6b',
+    most_popular: false,
+  },
+  {
+    slug: 'the-action-sprint-bundle',
+    name: 'The Action Sprint Bundle',
+    tagline: 'Stuck founders',
+    sessions: 3,
+    price: 90,
+    price_was: 150,
+    description: 'Find the block, make the decision, and build a 30-day plan to move fast.',
+    calendly_url: site?.calendly_bundle_foundation ?? 'https://calendly.com/feldon-haynes/packages/549dd535-e12c-4506-822a-9a839af25318',
+    most_popular: false,
+  },
+  {
+    slug: 'the-business-plan-bundle',
+    name: 'The Business Plan Bundle',
+    tagline: 'Aspiring founders',
+    sessions: 6,
+    price: 160,
+    price_was: 300,
+    description: 'From idea to a complete, executable plan. Validated, structured, and ready to launch.',
+    calendly_url: site?.calendly_bundle_action ?? 'https://calendly.com/feldon-haynes/packages/8af8f4b4-b4fc-4b38-a4d7-4c8863f57ce5',
+    most_popular: true,
+  },
+  {
+    slug: 'the-direction-bundle',
+    name: 'The Direction Bundle',
+    tagline: 'Lost direction',
+    sessions: 6,
+    price: 160,
+    price_was: 300,
+    description: 'Business audit, vision work, and a 6-month strategic roadmap for existing businesses.',
+    calendly_url: site?.calendly_bundle_full ?? 'https://calendly.com/feldon-haynes/packages/bcd3e931-3e20-4faa-9d96-2a82cc4e121a',
+    most_popular: false,
+  },
+];
+
+type BundleItem = {
+  slug: string;
+  name: string;
+  tagline: string;
+  sessions: number;
+  price: number;
+  price_was: number;
+  description: string;
+  calendly_url: string;
+  most_popular: boolean;
+};
+
+const displayBundles: BundleItem[] = bundles.length > 0
+  ? bundles.map(b => ({
+      slug: b.slug,
+      name: (b.entry.name as any)?.name ?? (b.entry.name as any) ?? b.slug,
+      tagline: b.entry.tagline ?? '',
+      sessions: b.entry.sessions ?? 0,
+      price: b.entry.price ?? 0,
+      price_was: b.entry.price_was ?? 0,
+      description: b.entry.description ?? '',
+      calendly_url: b.entry.calendly_url ?? calendly,
+      most_popular: b.entry.most_popular ?? false,
+    }))
+  : fallbackBundles;
+
+function savingsAmount(price: number, pricewas: number) {
+  return pricewas - price;
+}
 ---
 
 <section class="bundles" id="services" aria-label="Coaching bundles">
   <div class="container">
 
     <div class="bundles-header fade-in">
-      <span class="b-chip">Investment bundles</span>
-      <h2 class="b-h2">Choose your starting point</h2>
-      <p class="b-intro">
-        Launch pricing. All sessions online, Wednesdays and Thursdays, 8am to 6pm.
-      </p>
+      <span class="b-chip">{sectionChip}</span>
+      <h2 class="b-h2">{sectionH2}</h2>
+      <p class="b-intro">{sectionIntro}</p>
     </div>
 
     <div class="bundles-scroll-wrap" id="bundles-scroll">
     <div class="bundles-grid fade-in">
 
-      <!-- Bundle 1: Project Bundle -->
-      <article class="bundle-card" aria-label="The Project Bundle">
+      {displayBundles.map((bundle, i) => (
+        <article
+          class={`bundle-card${bundle.most_popular ? ' bundle-card--popular' : ''}`}
+          aria-label={`${bundle.name}${bundle.most_popular ? ' — Most Popular' : ''}`}
+        >
+          {bundle.most_popular && <div class="bundle-badge">Most Popular</div>}
 
-        <div class="bundle-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 11 12 14 22 4"/>
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-          </svg>
-        </div>
+          <div class="bundle-icon" aria-hidden="true">
+            {i === 0 && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            )}
+            {i === 1 && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            )}
+            {i === 2 && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+                <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="15" y2="17"/>
+              </svg>
+            )}
+            {i === 3 && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            )}
+          </div>
 
-        <h3 class="bundle-name">The Project Bundle</h3>
-        <p class="bundle-meta">3 sessions &middot; Specific project</p>
+          <h3 class="bundle-name">{bundle.name}</h3>
+          <p class="bundle-meta">{bundle.sessions} sessions &middot; {bundle.tagline}</p>
 
-        <div class="bundle-price-row">
-          <span class="bundle-price">&pound;90</span>
-          <span class="bundle-was">&pound;150</span>
-          <span class="bundle-save">Save £60</span>
-        </div>
+          <div class="bundle-price-row">
+            <span class="bundle-price">&pound;{bundle.price}</span>
+            <span class="bundle-was">&pound;{bundle.price_was}</span>
+            <span class="bundle-save">Save &pound;{savingsAmount(bundle.price, bundle.price_was)}</span>
+          </div>
 
-        <p class="bundle-desc">
-          Three focused sessions to scope, map, and launch a specific project.
-        </p>
+          <p class="bundle-desc">{bundle.description}</p>
 
-        <a
-          href="https://calendly.com/feldon-haynes/packages/da7fbbe4-840c-4ea8-8147-2128f99cfd6b"
-          class="bundle-btn bundle-btn--ghost"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Select bundle</a>
-      </article>
-
-      <!-- Bundle 2: Action Sprint Bundle -->
-      <article class="bundle-card" aria-label="The Action Sprint Bundle">
-
-        <div class="bundle-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-        </div>
-
-        <h3 class="bundle-name">The Action Sprint Bundle</h3>
-        <p class="bundle-meta">3 sessions &middot; Stuck founders</p>
-
-        <div class="bundle-price-row">
-          <span class="bundle-price">&pound;90</span>
-          <span class="bundle-was">&pound;150</span>
-          <span class="bundle-save">Save £60</span>
-        </div>
-
-        <p class="bundle-desc">
-          Find the block, make the decision, and build a 30-day plan to move fast.
-        </p>
-
-        <a
-          href="https://calendly.com/feldon-haynes/packages/549dd535-e12c-4506-822a-9a839af25318"
-          class="bundle-btn bundle-btn--ghost"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Select bundle</a>
-      </article>
-
-      <!-- Bundle 3: Business Plan Bundle — MOST POPULAR -->
-      <article class="bundle-card bundle-card--popular" aria-label="The Business Plan Bundle — Most Popular">
-        <div class="bundle-badge">Most Popular</div>
-
-        <div class="bundle-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
-            <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/>
-            <line x1="9" y1="13" x2="15" y2="13"/>
-            <line x1="9" y1="17" x2="15" y2="17"/>
-          </svg>
-        </div>
-
-        <h3 class="bundle-name">The Business Plan Bundle</h3>
-        <p class="bundle-meta">6 sessions &middot; Aspiring founders</p>
-
-        <div class="bundle-price-row">
-          <span class="bundle-price">&pound;160</span>
-          <span class="bundle-was">&pound;300</span>
-          <span class="bundle-save">Save £140</span>
-        </div>
-
-        <p class="bundle-desc">
-          From idea to a complete, executable plan. Validated, structured, and ready to launch.
-        </p>
-
-        <a
-          href="https://calendly.com/feldon-haynes/packages/8af8f4b4-b4fc-4b38-a4d7-4c8863f57ce5"
-          class="bundle-btn bundle-btn--filled"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Select bundle</a>
-      </article>
-
-      <!-- Bundle 4: Direction Bundle -->
-      <article class="bundle-card" aria-label="The Direction Bundle">
-
-        <div class="bundle-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-          </svg>
-        </div>
-
-        <h3 class="bundle-name">The Direction Bundle</h3>
-        <p class="bundle-meta">6 sessions &middot; Lost direction</p>
-
-        <div class="bundle-price-row">
-          <span class="bundle-price">&pound;160</span>
-          <span class="bundle-was">&pound;300</span>
-          <span class="bundle-save">Save £140</span>
-        </div>
-
-        <p class="bundle-desc">
-          Business audit, vision work, and a 6-month strategic roadmap for existing businesses.
-        </p>
-
-        <a
-          href="https://calendly.com/feldon-haynes/packages/bcd3e931-3e20-4faa-9d96-2a82cc4e121a"
-          class="bundle-btn bundle-btn--ghost"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Select bundle</a>
-      </article>
+          <a
+            href={bundle.calendly_url}
+            class={`bundle-btn ${bundle.most_popular ? 'bundle-btn--filled' : 'bundle-btn--ghost'}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >Select bundle</a>
+        </article>
+      ))}
 
     </div>
     </div>
@@ -159,7 +176,7 @@
 
     <p class="bundles-note fade-in">
       Not sure which fits?&nbsp;
-      <a href="https://calendly.com/feldon-haynes/discovery-call" class="bundles-note-link" target="_blank" rel="noopener noreferrer">
+      <a href={calendly} class="bundles-note-link" target="_blank" rel="noopener noreferrer">
         Start with a free 30-minute discovery call &rarr;
       </a>
     </p>

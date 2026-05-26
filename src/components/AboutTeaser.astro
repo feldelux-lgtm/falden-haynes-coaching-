@@ -1,7 +1,23 @@
 ---
-// AboutTeaser.astro — short about section on homepage
-// Clean white background, 2-col: photo left (full bleed), text right
-// No decorative dashes — chip tags only
+import { reader } from '../lib/reader';
+
+const hp   = await reader.singletons.homepage.read();
+const site = await reader.singletons.site_settings.read();
+
+const chip        = hp?.about_chip        ?? 'About Feldon';
+const h2          = hp?.about_h2          ?? "I've started 35 businesses. Now I help you build yours.";
+const body1       = hp?.about_body1       ?? "I know what it's like to have an idea you believe in and not know where to take it next. I've also built businesses from scratch. Made the mistakes, figured out what works, and come out the other side with something real.";
+const body2       = hp?.about_body2       ?? "That's what I bring to every session. Not theory. Not frameworks from a book. Real experience from someone who's been in the same position and found a way through.";
+const stat1num    = hp?.about_stat1_num   ?? '35+';
+const stat1label  = hp?.about_stat1_label ?? 'Businesses started';
+const stat2num    = hp?.about_stat2_num   ?? '40+';
+const stat2label  = hp?.about_stat2_label ?? 'Founders supported';
+const stat3num    = hp?.about_stat3_num   ?? '3×';
+const stat3label  = hp?.about_stat3_label ?? 'Industry awards';
+const awardChip   = hp?.about_award_chip  ?? '3× Award winner';
+const btn1        = hp?.about_btn1        ?? 'Read my full story';
+const btn2        = hp?.about_btn2        ?? 'Book a free call';
+const calendly    = site?.calendly_discovery ?? 'https://calendly.com/feldon-haynes/discovery-call';
 ---
 
 <section class="about-teaser" aria-label="About Feldon Haynes">
@@ -18,13 +34,12 @@
           loading="lazy"
           class="about-photo"
         />
-        <!-- Award chip overlay -->
         <div class="about-award-chip" aria-hidden="true">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="6"/>
             <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
           </svg>
-          <span>3× Award winner</span>
+          <span>{awardChip}</span>
         </div>
       </div>
     </div>
@@ -32,53 +47,39 @@
     <!-- RIGHT: text -->
     <div class="about-text fade-in">
 
-      <span class="about-chip">About Feldon</span>
+      <span class="about-chip">{chip}</span>
 
-      <h2 class="about-h2">
-        I've started 35 businesses.<br>
-        Now I help you <em>build yours.</em>
-      </h2>
+      <h2 class="about-h2" set:html={h2.replace("build yours.", "build <em>yours.</em>")} />
 
-      <p class="about-body">
-        I know what it's like to have an idea you believe in and not know
-        where to take it next. I've also built businesses from scratch.
-        Made the mistakes, figured out what works, and come out the other
-        side with something real.
-      </p>
-      <p class="about-body">
-        That's what I bring to every session. Not theory. Not frameworks
-        from a book. Real experience from someone who's been in the same
-        position and found a way through.
-      </p>
+      <p class="about-body">{body1}</p>
+      <p class="about-body">{body2}</p>
 
       <!-- Stats row -->
       <div class="about-stats">
         <div class="about-stat">
-          <span class="about-stat-num">35+</span>
-          <span class="about-stat-label">Businesses started</span>
+          <span class="about-stat-num">{stat1num}</span>
+          <span class="about-stat-label">{stat1label}</span>
         </div>
         <div class="about-stat-divider" aria-hidden="true"></div>
         <div class="about-stat">
-          <span class="about-stat-num">40+</span>
-          <span class="about-stat-label">Founders supported</span>
+          <span class="about-stat-num">{stat2num}</span>
+          <span class="about-stat-label">{stat2label}</span>
         </div>
         <div class="about-stat-divider" aria-hidden="true"></div>
         <div class="about-stat">
-          <span class="about-stat-num">3×</span>
-          <span class="about-stat-label">Industry awards</span>
+          <span class="about-stat-num">{stat3num}</span>
+          <span class="about-stat-label">{stat3label}</span>
         </div>
       </div>
 
       <div class="about-buttons">
-        <a href="/about" class="btn-primary">Read my full story</a>
+        <a href="/about" class="btn-primary">{btn1}</a>
         <a
-          href="https://calendly.com/feldon-haynes/discovery-call"
+          href={calendly}
           class="btn-ghost"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          Book a free call
-        </a>
+        >{btn2}</a>
       </div>
 
     </div>
