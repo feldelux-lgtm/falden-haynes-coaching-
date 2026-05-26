@@ -277,13 +277,14 @@ const displayTestimonials: TItem[] = testimonials.length > 0
   }
   .t-scroll-wrap::-webkit-scrollbar { display: none; }
 
-  /* ── Grid — centred on desktop ───────────── */
+  /* ── Grid — centred when few cards, scrolls when many ── */
   .t-grid {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 16px;
-    justify-content: center;
+    width: max-content;
+    margin: 0 auto;
   }
 
   /* ── Glass card ──────────────────────────── */
@@ -438,16 +439,12 @@ const displayTestimonials: TItem[] = testimonials.length > 0
     color: #ffffff;
   }
 
-  /* ── Tablet — cards overflow, scroll left ── */
+  /* ── Tablet ──────────────────────────────── */
   @media (max-width: 900px) {
     .t-h2 { font-size: 30px; }
     .t-scroll-wrap {
       margin: 0 -16px;
       padding: 0 16px 12px;
-    }
-    .t-grid {
-      justify-content: flex-start;
-      width: max-content;
     }
     .t-card { width: 250px; }
   }
@@ -488,11 +485,6 @@ const displayTestimonials: TItem[] = testimonials.length > 0
     .t-scroll-wrap {
       margin: 0 -16px;
       padding: 0 16px 4px;
-    }
-
-    .t-grid {
-      justify-content: flex-start;
-      width: max-content;
     }
 
     .t-card {
