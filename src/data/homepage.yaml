@@ -1,5 +1,7 @@
 hero_chip: Business Coaching
-hero_headline: Got an Idea, Ready to take it further?
+hero_headline: |-
+  Got an Idea, Ready to take it further?
+  The business coach who has built multiple businesses 
 hero_subheading: >-
   1-to-1 business and project planning coaching for small business owners and
   ambitious founders. From someone who has actually built businesses, not just
@@ -13,13 +15,15 @@ hero_float_number: 40+
 hero_float_label: Founders supported
 hero_award_chip: EPIC Spirit Award
 prob_chip: Who it's for
-prob_h2: Is this you?
-prob_intro: Four types of founders come through my door. One of them is you.
+prob_h2: 'Does this sound like you? '
+prob_intro: >-
+  Each business is different, as the saying goes "new level new challenge".
+  Where do you feel that you are?
 prob_card1_chip: Aspiring Founder
 prob_card1_title: You've got the idea. Now what?
 prob_card1_body: >-
   You know you want to build something, but you don't know where to start. I'll
-  help you turn it into a plan you can follow.
+  help you turn ideas into a plan you can follow.
 prob_card2_chip: Early-Stage Founder
 prob_card2_title: You've started. Now it gets real.
 prob_card2_body: >-
@@ -35,7 +39,7 @@ prob_card4_title: Established. Now let's build on it.
 prob_card4_body: >-
   Your business is running. But there's more: scaling, systemising, or just
   getting your time back. I can help with all of it.
-prob_cta: Book a free 30-minute call
+prob_cta: 'Book a free 30-minute Session '
 steps_chip: How it works
 steps_h2: 3 easy steps
 step1_title: Got your idea?
@@ -51,16 +55,20 @@ step3_title: Get a plan to bring your idea to life
 step3_body: >-
   Real, structured, actionable. A plan built around your idea, your resources,
   and what you want to achieve.
-step3_link: Book a free call
-session_chip: Every session
-session_h2: This is what you get. Every time.
+step3_link: 'Book a free session '
+session_chip: 'Every session includes '
+session_h2: 'This is what you get. '
 session_sub: Every bundle. Every session. No exceptions.
-session_f1_title: Recorded every time
-session_f1_body: Full replay in your inbox. Revisit any moment, any time.
-session_f2_title: Action plan the same day
-session_f2_body: Not next week. Written and in your inbox before you sleep.
+session_f1_title: Recorded Transcript every time
+session_f1_body: >-
+  The full transcript shared with you for reflection, action and
+  accountability. 
+session_f2_title: Action plan infront of you right away
+session_f2_body: >-
+  Either during the session or within the same 24 hours. A list of actions that
+  are a step in the right direction towards your goals
 session_f3_title: I'm reachable between sessions
-session_f3_body: Drop me a message when something comes up. I respond within 48 hours.
+session_f3_body: 'Drop me a message when something comes up. Always happy to answer questions. '
 about_chip: About Feldon
 about_h2: I've started 35 businesses. Now I help you build yours.
 about_body1: >-
