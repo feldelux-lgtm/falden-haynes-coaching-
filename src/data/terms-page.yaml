@@ -1,2 +1,174 @@
 last_updated: "27 June 2025"
-intro: ""
+intro: "These Terms and Conditions govern the coaching services provided by Feldon Haynes Coaching (\"we\", \"us\", \"our\") to you (\"the client\"). By booking or engaging in any coaching services, you agree to these terms. Please read them carefully before proceeding."
+content:
+  - type: heading
+    level: 2
+    children:
+      - text: "1. About us"
+  - type: paragraph
+    children:
+      - text: "Feldon Haynes Coaching is a company registered in England and Wales. Registered address: 32 Vicarage Road, Halesowen, West Midlands, B62 8HU. Companies House number: 16546926. Email: Feldonhaynes@gmail.com. Phone: 07562 614867"
+  - type: heading
+    level: 2
+    children:
+      - text: "2. Services"
+  - type: paragraph
+    children:
+      - text: "We provide 1-to-1 business coaching and mentoring services, delivered online via video call. All sessions are conducted on Wednesday and Thursday, between 8am and 6pm GMT/BST."
+  - type: paragraph
+    children:
+      - text: "Our coaching services are offered as bundles and individual sessions as described on this website. The specific scope of each service is outlined at the time of booking."
+  - type: paragraph
+    children:
+      - text: "Coaching services are for informational and developmental purposes only. Feldon Haynes Coaching does not provide legal, financial, accounting, or regulated professional advice. You should seek appropriate professional advice for such matters."
+  - type: heading
+    level: 2
+    children:
+      - text: "3. Booking"
+  - type: paragraph
+    children:
+      - text: "Sessions are booked via Calendly at the link provided at the time of purchase. Your booking is confirmed once payment has been received in full."
+  - type: paragraph
+    children:
+      - text: "We reserve the right to decline or cancel a booking at our discretion, in which case a full refund will be issued."
+  - type: heading
+    level: 2
+    children:
+      - text: "4. Payment"
+  - type: paragraph
+    children:
+      - text: "All fees are due in advance of the first session and are payable via Stripe. Prices are displayed on our website and are inclusive of any applicable taxes unless stated otherwise. All prices are quoted in Pounds Sterling (GBP)."
+  - type: paragraph
+    children:
+      - text: "We reserve the right to update our pricing at any time. Price changes do not affect bookings that have already been confirmed and paid."
+  - type: heading
+    level: 2
+    children:
+      - text: "5. Cancellation and rescheduling"
+  - type: heading
+    level: 3
+    children:
+      - text: "By you (the client)"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "More than 48 hours' notice"
+                bold: true
+              - text: " — you may cancel or reschedule at no charge. Sessions will be held in credit for rescheduling."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Less than 48 hours' notice"
+                bold: true
+              - text: " — the session will be forfeited and no refund or credit will be issued."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "No-show"
+                bold: true
+              - text: " — if you do not attend a scheduled session without prior notice, the session will be forfeited."
+  - type: heading
+    level: 3
+    children:
+      - text: "By us"
+  - type: paragraph
+    children:
+      - text: "If we need to cancel a session, we will give you as much notice as possible and offer a reschedule. If a reschedule cannot be agreed, a pro-rata refund will be issued for that session."
+  - type: heading
+    level: 2
+    children:
+      - text: "6. Refunds"
+  - type: paragraph
+    children:
+      - text: "Refunds are not available for sessions that have already taken place."
+  - type: paragraph
+    children:
+      - text: "If you wish to cancel a bundle before commencing, a full refund will be issued provided no sessions have been held. If sessions have commenced, a pro-rata refund may be offered at our discretion."
+  - type: paragraph
+    children:
+      - text: "Refund requests should be submitted in writing to Feldonhaynes@gmail.com."
+  - type: heading
+    level: 2
+    children:
+      - text: "7. Confidentiality"
+  - type: paragraph
+    children:
+      - text: "We treat all information shared during coaching sessions as confidential. We will not disclose personal details of your business, finances, or circumstances to third parties without your consent, except where required by law."
+  - type: paragraph
+    children:
+      - text: "We may use anonymised, general case studies or themes for educational purposes, but will never identify you or your business without your explicit written permission."
+  - type: heading
+    level: 2
+    children:
+      - text: "8. Client responsibilities"
+  - type: paragraph
+    children:
+      - text: "To get the most from our coaching services, you agree to:"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Attend sessions on time and prepared."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Complete any agreed actions between sessions."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Be honest and open about your circumstances."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Respect that coaching results depend significantly on your own effort and commitment."
+  - type: heading
+    level: 2
+    children:
+      - text: "9. Intellectual property"
+  - type: paragraph
+    children:
+      - text: "All materials, frameworks, templates, and resources provided by Feldon Haynes Coaching during coaching sessions are our intellectual property. They are provided for your personal and business use only and may not be shared, reproduced, or resold without our prior written consent."
+  - type: heading
+    level: 2
+    children:
+      - text: "10. Limitation of liability"
+  - type: paragraph
+    children:
+      - text: "Coaching is a developmental service. We do not guarantee specific business outcomes, revenue results, or success. Results depend on many factors beyond our control, including your own actions and market conditions."
+  - type: paragraph
+    children:
+      - text: "To the fullest extent permitted by law, Feldon Haynes Coaching shall not be liable for any indirect, incidental, or consequential loss arising from the use of our services. Our total liability shall not exceed the total fees paid by you for the specific service in question."
+  - type: paragraph
+    children:
+      - text: "Nothing in these Terms limits our liability for death or personal injury caused by our negligence, or for fraud or fraudulent misrepresentation."
+  - type: heading
+    level: 2
+    children:
+      - text: "11. Governing law"
+  - type: paragraph
+    children:
+      - text: "These Terms and Conditions are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales."
+  - type: heading
+    level: 2
+    children:
+      - text: "12. Changes to these terms"
+  - type: paragraph
+    children:
+      - text: "We may update these Terms and Conditions from time to time. The most recent version will always be published at feldonhaynes.com/terms. Continued use of our services after changes are published constitutes acceptance of the updated terms."
+  - type: heading
+    level: 2
+    children:
+      - text: "13. Contact"
+  - type: paragraph
+    children:
+      - text: "Questions about these Terms and Conditions should be sent to Feldonhaynes@gmail.com or call 07562 614867."

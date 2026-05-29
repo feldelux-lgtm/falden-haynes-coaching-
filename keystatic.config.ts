@@ -407,26 +407,13 @@ export default config({
         title: fields.slug({
           name: {
             label: 'URL slug',
-            description: 'The end of the URL. Example: type "canva-workshop" → page lives at feldonhaynes.com/lp/canva-workshop',
+            description: 'End of the URL. Example: "canva-workshop" → feldonhaynes.com/lp/canva-workshop',
           },
         }),
-        calendly_url: fields.text({
-          label: 'Calendly booking URL',
-          description: 'Paste your Calendly link here. The CTA button links directly to it.',
+        redirect_url: fields.text({
+          label: 'Destination URL',
+          description: 'Paste the full URL here (Canva page, any other URL). Visitors are sent straight there.',
         }),
-        headline: fields.text({
-          label: 'Headline (optional)',
-          multiline: true,
-          description: 'Leave blank to use the default: "A business coach who has actually built businesses."',
-        }),
-        subheading: fields.text({
-          label: 'Subheading (optional)',
-          multiline: true,
-          description: 'Leave blank to use the default subheading.',
-        }),
-        benefit_1: fields.text({ label: 'Benefit 1 (optional)', description: 'Leave blank to use defaults.' }),
-        benefit_2: fields.text({ label: 'Benefit 2 (optional)' }),
-        benefit_3: fields.text({ label: 'Benefit 3 (optional)' }),
       },
     }),
 

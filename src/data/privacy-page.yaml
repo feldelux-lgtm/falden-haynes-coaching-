@@ -1,2 +1,244 @@
 last_updated: "27 June 2025"
-intro: ""
+intro: "This Privacy Policy explains how Feldon Haynes Coaching (\"we\", \"us\", \"our\") collects, uses, and protects the personal information you provide when you use this website or engage with our services. We are committed to handling your data responsibly and in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018."
+content:
+  - type: heading
+    level: 2
+    children:
+      - text: "1. Who we are"
+  - type: paragraph
+    children:
+      - text: "The data controller responsible for your personal data is:"
+  - type: paragraph
+    children:
+      - text: "Feldon Haynes Coaching, 32 Vicarage Road, Halesowen, West Midlands, B62 8HU, England. Companies House number: 16546926. Email: Feldonhaynes@gmail.com. Phone: 07562 614867"
+  - type: heading
+    level: 2
+    children:
+      - text: "2. Information we collect"
+  - type: paragraph
+    children:
+      - text: "We may collect the following personal information:"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Contact information"
+                bold: true
+              - text: " — your name and email address when you submit our contact form or book a call via Calendly."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Message content"
+                bold: true
+              - text: " — the message you write in our contact form."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Booking details"
+                bold: true
+              - text: " — appointment dates, times, and any information you provide when booking a coaching session."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Usage data"
+                bold: true
+              - text: " — information about how you use our website, collected via Google Analytics. This may include your IP address, browser type, pages visited, and time spent on the site."
+  - type: paragraph
+    children:
+      - text: "We do not collect sensitive personal data (such as health information, financial data, or information about protected characteristics) unless you voluntarily share it during a coaching engagement."
+  - type: heading
+    level: 2
+    children:
+      - text: "3. How we use your information"
+  - type: paragraph
+    children:
+      - text: "We use your personal information to respond to enquiries, manage and deliver coaching sessions, send written action summaries and follow-up communications, improve our website and services, and meet our legal and contractual obligations. We do not use your personal data for automated decision-making or profiling."
+  - type: heading
+    level: 2
+    children:
+      - text: "4. Legal basis for processing"
+  - type: paragraph
+    children:
+      - text: "We process your personal data on the following legal bases under UK GDPR:"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Contract performance"
+                bold: true
+              - text: " — when processing is necessary to deliver the coaching services you have engaged us for."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Legitimate interests"
+                bold: true
+              - text: " — to respond to enquiries, manage bookings, and improve our services."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Legal obligation"
+                bold: true
+              - text: " — where processing is required to comply with applicable law."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Consent"
+                bold: true
+              - text: " — where we have asked for your consent. You may withdraw consent at any time."
+  - type: heading
+    level: 2
+    children:
+      - text: "5. How we share your information"
+  - type: paragraph
+    children:
+      - text: "We do not sell, rent, or trade your personal data. We may share information with the following third-party service providers:"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Calendly"
+                bold: true
+              - text: " — for booking and appointment management."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Notion (via Zapier)"
+                bold: true
+              - text: " — contact form submissions are stored in a Notion database."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Google Analytics"
+                bold: true
+              - text: " — for anonymised website usage analytics."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Stripe"
+                bold: true
+              - text: " — for payment processing. We do not store payment card details."
+  - type: heading
+    level: 2
+    children:
+      - text: "6. How long we keep your data"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Contact form enquiries — up to 12 months from the date of submission."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Coaching records (session notes, action summaries) — for the duration of the coaching engagement and up to 3 years thereafter."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Financial and payment records — 6 years, as required by UK tax law."
+  - type: heading
+    level: 2
+    children:
+      - text: "7. Your rights"
+  - type: paragraph
+    children:
+      - text: "Under UK GDPR, you have the following rights in relation to your personal data:"
+  - type: unordered-list
+    children:
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right of access"
+                bold: true
+              - text: " — to request a copy of the personal data we hold about you."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to rectification"
+                bold: true
+              - text: " — to ask us to correct inaccurate or incomplete data."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to erasure"
+                bold: true
+              - text: " — to request deletion of your data, subject to legal obligations."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to restrict processing"
+                bold: true
+              - text: " — to limit how we use your data in certain circumstances."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to data portability"
+                bold: true
+              - text: " — to receive your data in a structured, machine-readable format."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to object"
+                bold: true
+              - text: " — to object to processing based on legitimate interests."
+      - type: list-item
+        children:
+          - type: list-item-content
+            children:
+              - text: "Right to withdraw consent"
+                bold: true
+              - text: " — where processing is based on consent, to withdraw it at any time."
+  - type: paragraph
+    children:
+      - text: "To exercise any of these rights, contact us at Feldonhaynes@gmail.com. We will respond within one calendar month. If you are unhappy with how we handle your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk."
+  - type: heading
+    level: 2
+    children:
+      - text: "8. Cookies"
+  - type: paragraph
+    children:
+      - text: "Our website may use cookies and similar tracking technologies. We may use essential cookies (required for the site to function) and analytics cookies via Google Analytics to understand how visitors use the site. You can manage or disable cookies through your browser settings at any time."
+  - type: heading
+    level: 2
+    children:
+      - text: "9. External links"
+  - type: paragraph
+    children:
+      - text: "Our website may contain links to third-party websites (such as Calendly, LinkedIn, or Trustpilot). We are not responsible for the privacy practices of those sites."
+  - type: heading
+    level: 2
+    children:
+      - text: "10. Changes to this policy"
+  - type: paragraph
+    children:
+      - text: "We may update this Privacy Policy from time to time. The most recent version will always be available at feldonhaynes.com/privacy. The \"Last updated\" date at the top of this page will reflect any changes."
+  - type: heading
+    level: 2
+    children:
+      - text: "11. Contact us"
+  - type: paragraph
+    children:
+      - text: "For any questions about this Privacy Policy or how we handle your data, contact us at Feldonhaynes@gmail.com or call 07562 614867."
