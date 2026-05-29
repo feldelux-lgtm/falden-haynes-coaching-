@@ -406,28 +406,27 @@ export default config({
       schema: {
         title: fields.slug({
           name: {
-            label: 'Page title / URL slug',
-            description: 'Used in the URL. Example: "canva-workshop" creates feldonhaynes.com/lp/canva-workshop',
+            label: 'URL slug',
+            description: 'The end of the URL. Example: type "canva-workshop" → page lives at feldonhaynes.com/lp/canva-workshop',
           },
         }),
-        meta_description: fields.text({
-          label: 'Meta description',
-          multiline: true,
-          description: 'Shown in Google search results. Under 160 characters.',
-        }),
-        noindex: fields.checkbox({ label: 'Hide from Google (noindex)', defaultValue: true }),
-        chip: fields.text({ label: 'Eyebrow chip text', defaultValue: 'Free 30-minute discovery call' }),
-        headline: fields.text({ label: 'Hero headline (H1)', multiline: true }),
-        subheading: fields.text({ label: 'Hero subheading', multiline: true }),
-        benefit_1: fields.text({ label: 'Benefit 1', description: 'Leave blank to hide.' }),
-        benefit_2: fields.text({ label: 'Benefit 2', description: 'Leave blank to hide.' }),
-        benefit_3: fields.text({ label: 'Benefit 3', description: 'Leave blank to hide.' }),
-        cta_label: fields.text({ label: 'CTA button text', defaultValue: 'Book your free 30-minute call' }),
-        cta_note: fields.text({ label: 'Note below CTA button', defaultValue: 'Free · No obligation · Wednesdays and Thursdays' }),
         calendly_url: fields.text({
-          label: 'Calendly URL',
-          description: 'The booking link. The CTA button links directly to Calendly.',
+          label: 'Calendly booking URL',
+          description: 'Paste your Calendly link here. The CTA button links directly to it.',
         }),
+        headline: fields.text({
+          label: 'Headline (optional)',
+          multiline: true,
+          description: 'Leave blank to use the default: "A business coach who has actually built businesses."',
+        }),
+        subheading: fields.text({
+          label: 'Subheading (optional)',
+          multiline: true,
+          description: 'Leave blank to use the default subheading.',
+        }),
+        benefit_1: fields.text({ label: 'Benefit 1 (optional)', description: 'Leave blank to use defaults.' }),
+        benefit_2: fields.text({ label: 'Benefit 2 (optional)' }),
+        benefit_3: fields.text({ label: 'Benefit 3 (optional)' }),
       },
     }),
 

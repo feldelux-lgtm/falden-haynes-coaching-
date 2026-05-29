@@ -9,21 +9,27 @@ if (!slugStr) return new Response(null, { status: 404 });
 const entry = await reader.collections.landing_pages.read(slugStr);
 if (!entry) return new Response(null, { status: 404 });
 
-const benefits = [entry.benefit_1, entry.benefit_2, entry.benefit_3].filter(Boolean) as string[];
-const ctaLabel = entry.cta_label || 'Book your free 30-minute call';
-const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thursdays';
+const headline   = entry.headline   || 'A business coach who has actually built businesses.';
+const subheading = entry.subheading || '35 businesses started. 40+ founders coached. Based in the West Midlands, working with founders across the UK.';
+const rawBenefits = [entry.benefit_1, entry.benefit_2, entry.benefit_3].filter(Boolean) as string[];
+const benefits = rawBenefits.length > 0 ? rawBenefits : [
+  'Honest advice. Not just what you want to hear.',
+  'Written action plan after every session, same day.',
+  'Discovery call is free. No commitment, no pitch.',
+];
+const pageTitle = slugStr.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 ---
 
 <LpLayout
-  title={`${entry.title} | Feldon Haynes Coaching`}
-  description={entry.meta_description ?? ''}
+  title={`${pageTitle} | Feldon Haynes Coaching`}
+  description={`Book a free 30-minute discovery call with Feldon Haynes. ${subheading}`}
   canonicalUrl={`https://feldonhaynes.com/lp/${slugStr}`}
-  noindex={entry.noindex ?? true}
+  noindex={true}
 >
 
 <!-- ── TOP BAR ─────────────────────────────────── -->
 <header class="lp-bar">
-  <div class="lp-container lp-bar-inner">
+  <div class="lp-bar-inner">
     <a href="/" aria-label="Feldon Haynes Coaching — home">
       <img src="/Images/feldon-haynes-logo-light.webp" alt="Feldon Haynes Coaching" width="82" height="48" loading="eager" class="lp-logo-img" />
     </a>
@@ -40,32 +46,30 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
   <div class="lp-container">
     <div class="hero-inner fade-in">
 
-      {entry.chip && <span class="hero-chip">{entry.chip}</span>}
+      <span class="hero-chip">Free 30-minute discovery call</span>
 
-      <h1 class="hero-h1">{entry.headline}</h1>
+      <h1 class="hero-h1">{headline}</h1>
 
-      {entry.subheading && <p class="hero-sub">{entry.subheading}</p>}
+      <p class="hero-sub">{subheading}</p>
 
-      {benefits.length > 0 && (
-        <ul class="hero-checks">
-          {benefits.map(b => (
-            <li>
-              <svg class="check-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="11" fill="#534AB7"/>
-                <path d="M7 11.5l3 3 5-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              {b}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul class="hero-checks">
+        {benefits.map(b => (
+          <li>
+            <svg class="check-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="11" fill="#534AB7"/>
+              <path d="M7 11.5l3 3 5-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {b}
+          </li>
+        ))}
+      </ul>
 
       {entry.calendly_url && (
         <div class="hero-cta-wrap">
           <a href={entry.calendly_url} class="hero-cta-btn" target="_blank" rel="noopener noreferrer">
-            {ctaLabel}
+            Book your free 30-minute call
           </a>
-          <p class="hero-cta-note">{ctaNote}</p>
+          <p class="hero-cta-note">Free &middot; No obligation &middot; Wednesdays and Thursdays</p>
         </div>
       )}
 
@@ -95,7 +99,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
 
 <style>
   .lp-container {
-    max-width: 760px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -110,6 +114,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
     height: 72px;
     display: flex;
     align-items: center;
+    padding: 0 24px;
   }
   .lp-bar-inner {
     display: flex;
@@ -117,7 +122,6 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
     justify-content: space-between;
     max-width: 1180px;
     margin: 0 auto;
-    padding: 0 24px;
     width: 100%;
   }
   .lp-logo-img { height: 48px; width: auto; display: block; }
@@ -139,7 +143,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
   /* ── Hero ───────────────────────────────── */
   .lp-hero {
     background: #f8f9fb;
-    padding: 80px 0 88px;
+    padding: 80px 0 96px;
   }
   .hero-inner {
     display: flex;
@@ -175,7 +179,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
     font-size: 17px;
     color: #5a5680;
     line-height: 1.65;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     max-width: 560px;
   }
   .hero-checks {
@@ -214,7 +218,6 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
     transition: background 0.2s, transform 0.1s;
     box-shadow: 0 8px 32px rgba(83,74,183,0.28);
     margin-bottom: 10px;
-    display: block;
   }
   .hero-cta-btn:hover { background: #3b309e; }
   .hero-cta-btn:active { transform: scale(0.97); }
@@ -222,7 +225,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 12px;
     color: #b0abc8;
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .hero-proof {
     display: flex;
@@ -235,15 +238,11 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
   }
   .hero-proof-dots { display: flex; align-items: center; }
   .proof-dot {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 14px; font-weight: 800;
     color: #ffffff;
     border: 2px solid #f8f9fb;
     margin-left: -8px;
@@ -254,8 +253,7 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
   .proof-dot--c { background: #F2D832; color: #1a1744; }
   .hero-proof-text {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 13px;
-    color: #7e7a9f;
+    font-size: 13px; color: #7e7a9f;
   }
   .hero-proof-text strong { color: #1a1744; }
 
@@ -263,14 +261,10 @@ const ctaNote  = entry.cta_note  || 'Free · No obligation · Wednesdays and Thu
   .lp-foot {
     background: #13102e;
     padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
+    font-size: 12px; color: rgba(255,255,255,0.35);
   }
   .lp-foot-links { display: flex; gap: 20px; }
   .lp-foot-links a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
